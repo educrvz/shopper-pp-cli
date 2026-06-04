@@ -56,3 +56,23 @@ homebrew_casks:
             system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/shopper-pp-cli"]
             system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/shopper-pp-mcp"]
           end
+nfpms:
+  - id: shopper-pp-cli
+    package_name: shopper-pp-cli
+    vendor: educrvz
+    homepage: "https://github.com/educrvz/shopper-pp-cli"
+    maintainer: "educrvz <eduardo.domc.bot@gmail.com>"
+    description: "The first CLI for Shopper — every catalog, cart, and delivery surface plus a local price/basket history the web app discards each cycle."
+    license: Apache-2.0
+    formats:
+      - deb
+      - rpm
+      - apk
+scoops:
+  - repository:
+      owner: educrvz
+      name: scoop-bucket
+    directory: bucket
+    homepage: "https://github.com/educrvz/shopper-pp-cli"
+    description: "The first CLI for Shopper — every catalog, cart, and delivery surface plus a local price/basket history the web app discards each cycle."
+    license: Apache-2.0
