@@ -40,7 +40,7 @@ npx -y @mvanhorn/printing-press-library install shopper --agent claude-code --ag
 If `npx` isn't available (no Node, offline), install the CLI directly via Go (requires Go 1.26.3 or newer):
 
 ```bash
-go install github.com/mvanhorn/printing-press-library/library/other/shopper/cmd/shopper-pp-cli@latest
+go install github.com/mvanhorn/printing-press-library/library/commerce/shopper/cmd/shopper-pp-cli@latest
 ```
 
 This installs the CLI only — no skill.
@@ -91,7 +91,7 @@ If you can't use the MCPB bundle (older Claude Desktop, unsupported platform), i
 
 
 ```bash
-go install github.com/mvanhorn/printing-press-library/library/other/shopper/cmd/shopper-pp-mcp@latest
+go install github.com/mvanhorn/printing-press-library/library/commerce/shopper/cmd/shopper-pp-mcp@latest
 ```
 
 Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_desktop_config.json`):

@@ -12,12 +12,12 @@ import (
 
 func TestDiffCartSnapshots(t *testing.T) {
 	tests := []struct {
-		name        string
-		from        []store.CartSnapshotItem
-		to          []store.CartSnapshotItem
-		wantAdded   int
-		wantRemoved int
-		wantQtyChg  int
+		name         string
+		from         []store.CartSnapshotItem
+		to           []store.CartSnapshotItem
+		wantAdded    int
+		wantRemoved  int
+		wantQtyChg   int
 		wantPriceChg int
 	}{
 		{
@@ -40,15 +40,15 @@ func TestDiffCartSnapshots(t *testing.T) {
 			wantRemoved: 1,
 		},
 		{
-			name: "quantity changed",
-			from: []store.CartSnapshotItem{{ID: "1", Name: "Arroz", Qty: 2, Price: 9.99}},
-			to:   []store.CartSnapshotItem{{ID: "1", Name: "Arroz", Qty: 4, Price: 9.99}},
+			name:       "quantity changed",
+			from:       []store.CartSnapshotItem{{ID: "1", Name: "Arroz", Qty: 2, Price: 9.99}},
+			to:         []store.CartSnapshotItem{{ID: "1", Name: "Arroz", Qty: 4, Price: 9.99}},
 			wantQtyChg: 1,
 		},
 		{
-			name: "price changed",
-			from: []store.CartSnapshotItem{{ID: "1", Name: "Arroz", Qty: 2, Price: 9.99}},
-			to:   []store.CartSnapshotItem{{ID: "1", Name: "Arroz", Qty: 2, Price: 11.99}},
+			name:         "price changed",
+			from:         []store.CartSnapshotItem{{ID: "1", Name: "Arroz", Qty: 2, Price: 9.99}},
+			to:           []store.CartSnapshotItem{{ID: "1", Name: "Arroz", Qty: 2, Price: 11.99}},
 			wantPriceChg: 1,
 		},
 		{

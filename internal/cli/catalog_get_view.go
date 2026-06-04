@@ -17,7 +17,7 @@ func newCatalogGetViewCmd(flags *rootFlags) *cobra.Command {
 		Use:         "banner-view <banner_id>",
 		Short:       "Record a banner view (analytics ping)",
 		Example:     "  shopper-pp-cli catalog banner-view 550e8400-e29b-41d4-a716-446655440000",
-		Annotations: map[string]string{"pp:endpoint": "catalog.get_view", "pp:method": "GET", "pp:path": "/catalog/banners/{banner_id}/view", "mcp:read-only": "true"},
+		Annotations: map[string]string{"pp:endpoint": "catalog.get_view", "pp:method": "GET", "pp:path": "/catalog/banners/{banner_id}/view", "mcp:read-only": "true", "pp:no-error-path-probe": "true"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {
 				return cmd.Help()

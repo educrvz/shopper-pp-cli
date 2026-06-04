@@ -41,8 +41,9 @@ func newNovelChargeCalendarCmd(flags *rootFlags) *cobra.Command {
 	var flagLockingSoon bool
 
 	cmd := &cobra.Command{
-		Use:   "charge-calendar",
-		Short: "Your next delivery's charge date, edit-lock deadline, and reschedule window in one view",
+		Use:     "charge-calendar",
+		Short:   "Your next delivery's charge date, edit-lock deadline, and reschedule window in one view",
+		Example: "  shopper-pp-cli charge-calendar --weeks 8 --json",
 		Long: `Combines /delivery/summary (your scheduled delivery) and /delivery/v2/calendar
 (the allowed reschedule window) into one timeline and computes:
   - charge_date    = delivery_date - 7 days (Shopper charges ~7d ahead)

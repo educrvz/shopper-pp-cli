@@ -36,8 +36,9 @@ func newNovelRestockPredictCmd(flags *rootFlags) *cobra.Command {
 	var flagSuggestAdds bool
 
 	cmd := &cobra.Command{
-		Use:   "predict",
-		Short: "Predicts when you'll run out of each staple from your historical buying cadence",
+		Use:     "predict",
+		Short:   "Predicts when you'll run out of each staple from your historical buying cadence",
+		Example: "  shopper-pp-cli restock predict --horizon 14d --suggest-adds --json",
 		Long: `Analyzes your accumulated cart_snapshots to estimate per-SKU consumption cadence
 and predict which items might run out within --horizon days.
 

@@ -8,9 +8,9 @@ import "testing"
 func TestParseUnitLabelForDrift(t *testing.T) {
 	// Verify that pack-size parsing works for shrinkflation detection
 	tests := []struct {
-		name       string
-		wantLabel  string
-		wantGrams  int64
+		name      string
+		wantLabel string
+		wantGrams int64
 	}{
 		{"Arroz Branco 5KG Premium", "KG", 5000},
 		{"Azeite Extravirgem 500ML", "ML", 500},
@@ -32,7 +32,7 @@ func TestParseUnitLabelForDrift(t *testing.T) {
 
 func TestShrinkflationDetection(t *testing.T) {
 	// Unit inflation: same price, smaller pack → higher R$/kg
-	oldPriceCents := int64(1000)  // R$10.00
+	oldPriceCents := int64(1000) // R$10.00
 	oldGrams := int64(1000)      // 1KG
 	newPriceCents := int64(1000) // R$10.00 (same price)
 	newGrams := int64(800)       // 800g (smaller pack)

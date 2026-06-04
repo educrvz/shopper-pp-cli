@@ -14,16 +14,16 @@ import (
 
 // basketDiffResult is the output shape for basket diff.
 type basketDiffResult struct {
-	Status          string               `json:"status"`
-	Note            string               `json:"note,omitempty"`
-	FromSnapshotID  int64                `json:"from_snapshot_id,omitempty"`
-	ToSnapshotID    int64                `json:"to_snapshot_id,omitempty"`
-	FromTakenAt     string               `json:"from_taken_at,omitempty"`
-	ToTakenAt       string               `json:"to_taken_at,omitempty"`
-	Added           []diffItem           `json:"added"`
-	Removed         []diffItem           `json:"removed"`
+	Status          string                `json:"status"`
+	Note            string                `json:"note,omitempty"`
+	FromSnapshotID  int64                 `json:"from_snapshot_id,omitempty"`
+	ToSnapshotID    int64                 `json:"to_snapshot_id,omitempty"`
+	FromTakenAt     string                `json:"from_taken_at,omitempty"`
+	ToTakenAt       string                `json:"to_taken_at,omitempty"`
+	Added           []diffItem            `json:"added"`
+	Removed         []diffItem            `json:"removed"`
 	QuantityChanged []quantityChangedItem `json:"quantity_changed"`
-	PriceChanged    []priceChangedItem   `json:"price_changed"`
+	PriceChanged    []priceChangedItem    `json:"price_changed"`
 }
 
 type diffItem struct {
@@ -55,8 +55,9 @@ func newNovelBasketDiffCmd(flags *rootFlags) *cobra.Command {
 	var flagTo string
 
 	cmd := &cobra.Command{
-		Use:   "diff",
-		Short: "Compares your current recurring basket against a previous cycle's snapshot to show exactly what was added, dropped",
+		Use:     "diff",
+		Short:   "Compares your current recurring basket against a previous cycle's snapshot to show exactly what was added, dropped",
+		Example: "  shopper-pp-cli basket diff --json",
 		Long: `Snapshots your current /cart/summary items and diffs them against the previous
 snapshot stored locally.
 
@@ -120,9 +121,9 @@ Currently "last-snapshot" (from) and "current" (to) are the supported values.`,
 					return fmt.Errorf("saving baseline snapshot: %w", snapErr)
 				}
 				result := basketDiffResult{
-					Status:      "baseline_captured",
-					Note:        "Baseline snapshot captured (snapshot #" + fmt.Sprintf("%d", newID) + "). Run again next cycle to see changes.",
-					ToSnapshotID: newID,
+					Status:          "baseline_captured",
+					Note:            "Baseline snapshot captured (snapshot #" + fmt.Sprintf("%d", newID) + "). Run again next cycle to see changes.",
+					ToSnapshotID:    newID,
 					Added:           make([]diffItem, 0),
 					Removed:         make([]diffItem, 0),
 					QuantityChanged: make([]quantityChangedItem, 0),
@@ -161,7 +162,9 @@ Currently "last-snapshot" (from) and "current" (to) are the supported values.`,
 
 // extractCartItems parses cart items from /cart/summary response.
 // The real Shopper API returns a shape like:
-//   { "items": [ { "id": 123, "name": "...", "qty": 2, "price": 9.99, ... } ], "total": ... }
+//
+//	{ "items": [ { "id": 123, "name": "...", "qty": 2, "price": 9.99, ... } ], "total": ... }
+//
 // We extract whatever we can, failing gracefully with empty slice.
 func extractCartItems(data json.RawMessage) []store.CartSnapshotItem {
 	var top map[string]json.RawMessage

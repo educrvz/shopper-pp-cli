@@ -16,10 +16,10 @@ import (
 )
 
 type cashbackSuggestedItem struct {
-	ID       string  `json:"id"`
-	Name     string  `json:"name"`
-	Price    float64 `json:"price"`
-	IsRestock bool   `json:"is_restock,omitempty"`
+	ID        string  `json:"id"`
+	Name      string  `json:"name"`
+	Price     float64 `json:"price"`
+	IsRestock bool    `json:"is_restock,omitempty"`
 }
 
 type cashbackOptimizeResult struct {
@@ -41,8 +41,9 @@ func newNovelCashbackOptimizeCmd(flags *rootFlags) *cobra.Command {
 	var flagMaxExtra string
 
 	cmd := &cobra.Command{
-		Use:   "optimize",
-		Short: "Computes the cheapest set of items to add (or whether to wait) to cross the next cashback tier",
+		Use:     "optimize",
+		Short:   "Computes the cheapest set of items to add (or whether to wait) to cross the next cashback tier",
+		Example: "  shopper-pp-cli cashback optimize --tier 2399 --reward 100 --json",
 		Long: `Reads your current cart total from /cart/summary. Given a --tier target (R$ value),
 computes the gap and suggests the cheapest catalog items that close it.
 

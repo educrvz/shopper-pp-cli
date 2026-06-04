@@ -16,12 +16,12 @@ import (
 )
 
 type shrinkflationItem struct {
-	ProductID    string  `json:"product_id"`
-	Name         string  `json:"name"`
-	OldPriceCents int64  `json:"old_price_cents"`
-	NewPriceCents int64  `json:"new_price_cents"`
-	OldPackGrams  int64  `json:"old_pack_grams"`
-	NewPackGrams  int64  `json:"new_pack_grams"`
+	ProductID     string  `json:"product_id"`
+	Name          string  `json:"name"`
+	OldPriceCents int64   `json:"old_price_cents"`
+	NewPriceCents int64   `json:"new_price_cents"`
+	OldPackGrams  int64   `json:"old_pack_grams"`
+	NewPackGrams  int64   `json:"new_pack_grams"`
 	OldRsPerKg    float64 `json:"old_rs_per_kg"`
 	NewRsPerKg    float64 `json:"new_rs_per_kg"`
 	UnitInflation float64 `json:"unit_inflation_pct"`
@@ -29,10 +29,10 @@ type shrinkflationItem struct {
 }
 
 type discontinuedItem struct {
-	ProductID   string `json:"product_id"`
-	Name        string `json:"name"`
-	LastSeenAt  string `json:"last_seen_at"`
-	LastPrice   float64 `json:"last_price"`
+	ProductID  string  `json:"product_id"`
+	Name       string  `json:"name"`
+	LastSeenAt string  `json:"last_seen_at"`
+	LastPrice  float64 `json:"last_price"`
 }
 
 type catalogDriftResult struct {
@@ -50,8 +50,9 @@ func newNovelCatalogDriftCmd(flags *rootFlags) *cobra.Command {
 	var flagSince string
 
 	cmd := &cobra.Command{
-		Use:   "drift",
-		Short: "Flags products you buy that were discontinued, silently swapped, or kept their price while shrinking the pack",
+		Use:     "drift",
+		Short:   "Flags products you buy that were discontinued, silently swapped, or kept their price while shrinking the pack",
+		Example: "  shopper-pp-cli catalog drift --since 90d --kind shrinkflation,discontinued --json",
 		Long: `Analyzes price_snapshots to detect:
 
   shrinkflation  Same or higher price but smaller pack size → higher R$/unit cost.

@@ -15,7 +15,7 @@
   "spec_format": "internal",
   "spec_checksum": "sha256:59b0ad74cb2a306eb24af6771bcc081e76892d7566d94d9b752085fa0c0a9913",
   "run_id": "20260604-074112",
-  "category": "other",
+  "category": "commerce",
   "description": "The first CLI for Shopper — every catalog, cart, and delivery surface plus a local price/basket history the web app throws away each cycle.",
   "mcp_binary": "shopper-pp-mcp",
   "mcp_tool_count": 21,
@@ -27,7 +27,7 @@
   ],
   "novel_features": [
     {
-      "name": "Charge \u0026 Edit Calendar",
+      "name": "Charge & Edit Calendar",
       "command": "charge-calendar",
       "description": "Every upcoming cycle's charge date, edit-lock deadline, and delivery date in one timeline so you never miss an edit window or get surprised by a charge."
     },

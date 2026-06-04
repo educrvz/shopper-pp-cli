@@ -18,23 +18,23 @@ import (
 )
 
 type priceAlert struct {
-	ProductID   string  `json:"product_id"`
-	Name        string  `json:"name"`
-	PriceFrom   float64 `json:"price_from"`
-	PriceTo     float64 `json:"price_to"`
-	PctChange   float64 `json:"pct_change"`
-	Direction   string  `json:"direction"` // "up" or "down"
-	BaselineAt  string  `json:"baseline_at"`
-	LatestAt    string  `json:"latest_at"`
+	ProductID  string  `json:"product_id"`
+	Name       string  `json:"name"`
+	PriceFrom  float64 `json:"price_from"`
+	PriceTo    float64 `json:"price_to"`
+	PctChange  float64 `json:"pct_change"`
+	Direction  string  `json:"direction"` // "up" or "down"
+	BaselineAt string  `json:"baseline_at"`
+	LatestAt   string  `json:"latest_at"`
 }
 
 type priceWatchResult struct {
-	Status    string       `json:"status"`
-	Note      string       `json:"note,omitempty"`
-	Threshold float64      `json:"threshold_pct"`
-	Since     string       `json:"since"`
-	Alerts    []priceAlert `json:"alerts"`
-	Snapshotted int        `json:"snapshotted"`
+	Status      string       `json:"status"`
+	Note        string       `json:"note,omitempty"`
+	Threshold   float64      `json:"threshold_pct"`
+	Since       string       `json:"since"`
+	Alerts      []priceAlert `json:"alerts"`
+	Snapshotted int          `json:"snapshotted"`
 }
 
 func newNovelPriceWatchCmd(flags *rootFlags) *cobra.Command {
@@ -43,8 +43,9 @@ func newNovelPriceWatchCmd(flags *rootFlags) *cobra.Command {
 	var flagOnlyBasket bool
 
 	cmd := &cobra.Command{
-		Use:   "price-watch",
-		Short: "Tracks the price history of the SKUs you actually buy and alerts when one rises or drops meaningfully",
+		Use:     "price-watch",
+		Short:   "Tracks the price history of the SKUs you actually buy and alerts when one rises or drops meaningfully",
+		Example: "  shopper-pp-cli price-watch --only-basket --threshold 5% --json",
 		Long: `On each run, snapshots current prices into a local price_snapshots table and
 reports SKUs whose latest price differs from their earliest recorded price within
 the --since window by at least --threshold percent.
