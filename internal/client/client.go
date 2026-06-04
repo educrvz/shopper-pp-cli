@@ -12,14 +12,14 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/educrvz/shopper-pp-cli/internal/cliutil"
+	"github.com/educrvz/shopper-pp-cli/internal/config"
 	"io"
 	"math"
 	"net/http"
 	"net/url"
 	"os"
 	"path/filepath"
-	"github.com/educrvz/shopper-pp-cli/internal/cliutil"
-	"github.com/educrvz/shopper-pp-cli/internal/config"
 	"sort"
 	"strings"
 	"time"
@@ -224,6 +224,14 @@ func (c *Client) cacheKey(path string, params map[string]string) string {
 		}
 		if c.Config.Path != "" {
 			key += "|config_path=" + c.Config.Path
+		}
+		// PATCH: store-scoping. The x-store-id / x-cluster-id headers select
+		// which storefront the API answers for, so two requests to the same
+		// path+params return different bodies per store. They MUST be part of
+		// the cache key, or a --store fresh read collides with a cached
+		// --store programada read (same path) and returns the wrong basket.
+		if c.Config.Headers != nil {
+			key += "|store=" + c.Config.Headers["x-store-id"] + "/" + c.Config.Headers["x-cluster-id"]
 		}
 	}
 	paramKeys := make([]string, 0, len(params))
