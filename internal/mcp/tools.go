@@ -15,19 +15,19 @@ import (
 
 	mcplib "github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
-	"shopper-pp-cli/internal/cli"
-	"shopper-pp-cli/internal/client"
-	"shopper-pp-cli/internal/cliutil"
-	"shopper-pp-cli/internal/config"
-	"shopper-pp-cli/internal/mcp/cobratree"
-	"shopper-pp-cli/internal/store"
+	"github.com/educrvz/shopper-pp-cli/internal/cli"
+	"github.com/educrvz/shopper-pp-cli/internal/client"
+	"github.com/educrvz/shopper-pp-cli/internal/cliutil"
+	"github.com/educrvz/shopper-pp-cli/internal/config"
+	"github.com/educrvz/shopper-pp-cli/internal/mcp/cobratree"
+	"github.com/educrvz/shopper-pp-cli/internal/store"
 )
 
 // RegisterTools registers all API operations as MCP tools.
 func RegisterTools(s *server.MCPServer) {
 	s.AddTool(
 		mcplib.NewTool("address_list_address",
-			mcplib.WithDescription("GET /address/. Returns the address."),
+			mcplib.WithDescription("List the saved delivery addresses for the authenticated Shopper account. Takes no parameters; results are scoped to the bearer token. Returns the address book (each entry with its id, label, and location fields). Call this to discover which address a delivery or cart is bound to before scheduling or rescheduling."),
 			mcplib.WithReadOnlyHintAnnotation(true),
 			mcplib.WithDestructiveHintAnnotation(false),
 			mcplib.WithOpenWorldHintAnnotation(true),
@@ -47,7 +47,7 @@ func RegisterTools(s *server.MCPServer) {
 	)
 	s.AddTool(
 		mcplib.NewTool("cart_list_summary",
-			mcplib.WithDescription("GET /cart/summary. Returns the summary."),
+			mcplib.WithDescription("Fetch the current cart summary for the authenticated account: line items, quantities, and totals as the store computes them. Takes no parameters; the cart is keyed off the bearer token. Use this to read cart state after cart_add/cart_remove, or before checkout — it reflects the server-side cart, not a local copy. Returns the summary."),
 			mcplib.WithReadOnlyHintAnnotation(true),
 			mcplib.WithDestructiveHintAnnotation(false),
 			mcplib.WithOpenWorldHintAnnotation(true),
@@ -124,7 +124,7 @@ func RegisterTools(s *server.MCPServer) {
 	)
 	s.AddTool(
 		mcplib.NewTool("catalog_list_departments",
-			mcplib.WithDescription("GET /catalog/departments. Returns the departments."),
+			mcplib.WithDescription("List the Shopper catalog's top-level departments (the store's category tree used for browsing). Takes no parameters. Returns each department with its id and name. Use this to map a free-text department name to the id needed when filtering catalog search."),
 			mcplib.WithReadOnlyHintAnnotation(true),
 			mcplib.WithDestructiveHintAnnotation(false),
 			mcplib.WithOpenWorldHintAnnotation(true),
@@ -133,7 +133,7 @@ func RegisterTools(s *server.MCPServer) {
 	)
 	s.AddTool(
 		mcplib.NewTool("catalog_list_news",
-			mcplib.WithDescription("GET /catalog/products/news. Returns the news."),
+			mcplib.WithDescription("List newly added products in the Shopper catalog (the store's 'what's new' feed). Takes no parameters. Returns recently introduced products with id, name, and price. Prefer this over catalog_search when you want recent arrivals rather than a keyword query."),
 			mcplib.WithReadOnlyHintAnnotation(true),
 			mcplib.WithDestructiveHintAnnotation(false),
 			mcplib.WithOpenWorldHintAnnotation(true),
@@ -152,7 +152,7 @@ func RegisterTools(s *server.MCPServer) {
 	)
 	s.AddTool(
 		mcplib.NewTool("delivery_list_calendar",
-			mcplib.WithDescription("GET /delivery/v2/calendar. Returns the calendar."),
+			mcplib.WithDescription("Fetch the delivery reschedule calendar from /delivery/v2/calendar: the date-picker configuration the store uses, i.e. the allowed reschedule date range and the set of disabled (unavailable) days. Takes no parameters; scoped to the account's active order. Use this to find which dates a delivery may be moved to before calling a reschedule; pair with delivery_list_summary to see the currently scheduled date. Returns the calendar."),
 			mcplib.WithReadOnlyHintAnnotation(true),
 			mcplib.WithDestructiveHintAnnotation(false),
 			mcplib.WithOpenWorldHintAnnotation(true),
@@ -161,7 +161,7 @@ func RegisterTools(s *server.MCPServer) {
 	)
 	s.AddTool(
 		mcplib.NewTool("delivery_list_summary",
-			mcplib.WithDescription("GET /delivery/summary. Returns the summary."),
+			mcplib.WithDescription("Fetch the current delivery summary from /delivery/summary: the scheduled delivery date and related order-timing fields (charge and cutoff/lock dates the store derives from it) for the authenticated account. Takes no parameters. Use this to see when the next basket is scheduled to arrive; pair with delivery_list_calendar for the dates it can be moved to. Returns the summary."),
 			mcplib.WithReadOnlyHintAnnotation(true),
 			mcplib.WithDestructiveHintAnnotation(false),
 			mcplib.WithOpenWorldHintAnnotation(true),
@@ -207,7 +207,7 @@ func RegisterTools(s *server.MCPServer) {
 	)
 	s.AddTool(
 		mcplib.NewTool("features_list_tick",
-			mcplib.WithDescription("GET /features/timer/tick. Returns the tick."),
+			mcplib.WithDescription("Read the current server timer tick from /features/timer/tick — the countdown/clock value the store uses to gate time-bound flows such as the order edit/cutoff window. Takes no parameters. Returns the current tick state. Use this to check how much time remains before the cart locks rather than computing it client-side."),
 			mcplib.WithReadOnlyHintAnnotation(true),
 			mcplib.WithDestructiveHintAnnotation(false),
 			mcplib.WithOpenWorldHintAnnotation(true),
@@ -216,7 +216,7 @@ func RegisterTools(s *server.MCPServer) {
 	)
 	s.AddTool(
 		mcplib.NewTool("features_list_toggle",
-			mcplib.WithDescription("GET /features/toggle. Returns the toggle."),
+			mcplib.WithDescription("Read the active feature flags (toggles) for the authenticated session from /features/toggle. Takes no parameters. Returns the set of enabled feature flags. Use this to detect which store capabilities are available to this account before invoking a feature-gated command."),
 			mcplib.WithReadOnlyHintAnnotation(true),
 			mcplib.WithDestructiveHintAnnotation(false),
 			mcplib.WithOpenWorldHintAnnotation(true),
@@ -225,7 +225,7 @@ func RegisterTools(s *server.MCPServer) {
 	)
 	s.AddTool(
 		mcplib.NewTool("session_list_social",
-			mcplib.WithDescription("GET /auth/validation/social. Returns the social."),
+			mcplib.WithDescription("Validate the current social-login session via /auth/validation/social. Takes no parameters; validates the bearer token's social-auth state. Returns the session/social validation result. Use this to confirm the configured token is still authenticated before running account-scoped commands."),
 			mcplib.WithReadOnlyHintAnnotation(true),
 			mcplib.WithDestructiveHintAnnotation(false),
 			mcplib.WithOpenWorldHintAnnotation(true),
@@ -403,19 +403,16 @@ func makeAPIHandler(method, pathTemplate string, readOnly bool, binaryResponse b
 				return mcplib.NewToolResultError("authentication error: " + cliutil.SanitizeErrorBody(msg) +
 					"\nhint: the API rejected the request — this usually means auth is missing or invalid." +
 					"\n      Set your API key: export SHOPPER_TOKEN=<your-key>" +
-					"\n      See API docs: https://siteapi.shopper.com.br" +
 					"\n      Run 'shopper-pp-cli doctor' to check auth status."), nil
 			case strings.Contains(msg, "HTTP 401"):
 				return mcplib.NewToolResultError("authentication failed: " + cliutil.SanitizeErrorBody(msg) +
 					"\nhint: check your token." +
 					"\n      Set it with: export SHOPPER_TOKEN=<your-key>" +
-					"\n      See API docs: https://siteapi.shopper.com.br" +
 					"\n      Run 'shopper-pp-cli doctor' to check auth status."), nil
 			case strings.Contains(msg, "HTTP 403"):
 				return mcplib.NewToolResultError("permission denied: " + cliutil.SanitizeErrorBody(msg) +
 					"\nhint: your credentials are valid but lack access to this resource." +
 					"\n      Set it with: export SHOPPER_TOKEN=<your-key>" +
-					"\n      See API docs: https://siteapi.shopper.com.br" +
 					"\n      Run 'shopper-pp-cli doctor' to check auth status."), nil
 			case strings.Contains(msg, "HTTP 404"):
 				if method == "DELETE" {
@@ -608,7 +605,7 @@ func handleSQL(ctx context.Context, req mcplib.CallToolRequest) (*mcplib.CallToo
 func handleContext(_ context.Context, _ mcplib.CallToolRequest) (*mcplib.CallToolResult, error) {
 	ctx := map[string]any{
 		"api":         "shopper",
-		"description": "The first CLI for Shopper — every catalog, cart",
+		"description": "Shopper (shopper.com.br) — Brazilian online supermarket.",
 		"archetype":   "generic",
 		"tool_count":  21,
 		// tool_surface tells agents which surface a capability lives on.
@@ -624,7 +621,6 @@ func handleContext(_ context.Context, _ mcplib.CallToolRequest) (*mcplib.CallToo
 					"description": "Set to your API credential.",
 				},
 			},
-			"docs_url": "https://siteapi.shopper.com.br",
 		},
 		"resources": []map[string]any{
 			{
@@ -677,20 +673,20 @@ func handleContext(_ context.Context, _ mcplib.CallToolRequest) (*mcplib.CallToo
 		// Command-mirror capabilities are exposed through MCP by shelling out
 		// to the companion CLI binary.
 		"command_mirror_capabilities": []map[string]string{
-			{"name": "Charge & Edit Calendar", "command": "charge-calendar", "description": "Every upcoming cycle's charge date, edit-lock deadline", "rationale": "Charge = delivery-7d and lock = delivery-5d (-3d Fresh)", "via": "mcp-command-mirror"},
-			{"name": "Basket Diff", "command": "basket diff", "description": "Compares your current recurring basket against a previous cycle's snapshot to show exactly what was added, dropped", "rationale": "Requires two basket states over time", "via": "mcp-command-mirror"},
-			{"name": "Price Watch", "command": "price-watch", "description": "Tracks the price history of the SKUs you actually buy and alerts when one rises or drops meaningfully versus your own", "rationale": "/catalog/search returns only today's price", "via": "mcp-command-mirror"},
-			{"name": "Restock Predictor", "command": "restock predict", "description": "Predicts when you'll run out of each staple from your historical buying cadence and suggests what to add to the", "rationale": "Needs a per-SKU purchase time series (cadence + quantity across cycles) joined against the current basket", "via": "mcp-command-mirror"},
-			{"name": "Catalog Drift Detector", "command": "catalog drift", "description": "Flags products you buy that were discontinued, silently swapped, or kept their price while shrinking the pack", "rationale": "Detecting shrinkflation or disappearance requires comparing successive catalog snapshots (price, pack size", "via": "mcp-command-mirror"},
-			{"name": "Cashback Threshold Optimizer", "command": "cashback optimize", "description": "Computes the cheapest set of items to add (or whether to wait) to cross the next cashback tier", "rationale": "Combines current cart total, the active cashback rule, and predicted restock demand into a knapsack over your own demand", "via": "mcp-command-mirror"},
+			{"name": "Charge & Edit Calendar", "command": "charge-calendar", "description": "Every upcoming cycle's charge date, edit-lock deadline", "rationale": "", "via": "mcp-command-mirror"},
+			{"name": "Basket Diff", "command": "basket diff", "description": "Compares your current recurring basket against a previous cycle's snapshot to show exactly what was added, dropped", "rationale": "", "via": "mcp-command-mirror"},
+			{"name": "Price Watch", "command": "price-watch", "description": "Tracks the price history of the SKUs you actually buy and alerts when one rises or drops meaningfully versus your own", "rationale": "", "via": "mcp-command-mirror"},
+			{"name": "Restock Predictor", "command": "restock predict", "description": "Predicts when you'll run out of each staple from your historical buying cadence and suggests what to add to the", "rationale": "", "via": "mcp-command-mirror"},
+			{"name": "Catalog Drift Detector", "command": "catalog drift", "description": "Flags products you buy that were discontinued, silently swapped, or kept their price while shrinking the pack", "rationale": "", "via": "mcp-command-mirror"},
+			{"name": "Cashback Threshold Optimizer", "command": "cashback optimize", "description": "Computes the cheapest set of items to add (or whether to wait) to cross the next cashback tier", "rationale": "", "via": "mcp-command-mirror"},
 		},
 		"playbook": []map[string]string{
-			{"topic": "Charge & Edit Calendar", "insight": "Charge = delivery-7d and lock = delivery-5d (-3d Fresh) must be derived across many cycles by joining snapshotted delivery calendar with plan cadence; no single endpoint returns all your money/edit dates."},
-			{"topic": "Basket Diff", "insight": "Requires two basket states over time; the API only returns the current /cart/summary and the web UI never persists last cycle's template."},
-			{"topic": "Price Watch", "insight": "/catalog/search returns only today's price; a personal 'more expensive than I paid' baseline needs periodic local price snapshots the API never keeps."},
-			{"topic": "Restock Predictor", "insight": "Needs a per-SKU purchase time series (cadence + quantity across cycles) joined against the current basket; no endpoint exposes a consumption model."},
-			{"topic": "Catalog Drift Detector", "insight": "Detecting shrinkflation or disappearance requires comparing successive catalog snapshots (price, pack size, availability) per SKU and normalizing to unit price; a single /catalog/search call has no temporal reference."},
-			{"topic": "Cashback Threshold Optimizer", "insight": "Combines current cart total, the active cashback rule, and predicted restock demand into a knapsack over your own demand; no endpoint computes cheapest add-ons to reach a tier."},
+			{"topic": "Charge & Edit Calendar", "insight": ""},
+			{"topic": "Basket Diff", "insight": ""},
+			{"topic": "Price Watch", "insight": ""},
+			{"topic": "Restock Predictor", "insight": ""},
+			{"topic": "Catalog Drift Detector", "insight": ""},
+			{"topic": "Cashback Threshold Optimizer", "insight": ""},
 		},
 	}
 	data, _ := json.MarshalIndent(ctx, "", "  ")

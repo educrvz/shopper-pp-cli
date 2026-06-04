@@ -6,7 +6,7 @@ package main
 import (
 	"os"
 
-	"shopper-pp-cli/internal/cli"
+	"github.com/educrvz/shopper-pp-cli/internal/cli"
 )
 
 func main() {

@@ -13,7 +13,7 @@ metadata:
     install:
       - kind: go
         bins: [shopper-pp-cli]
-        module: github.com/mvanhorn/printing-press-library/library/commerce/shopper/cmd/shopper-pp-cli
+        module: github.com/educrvz/shopper-pp-cli/cmd/shopper-pp-cli
 ---
 
 # Shopper — Printing Press CLI
@@ -32,7 +32,7 @@ This skill drives the `shopper-pp-cli` binary. **You must verify the CLI is inst
 If the `npx` install fails (no Node, offline, etc.), fall back to a direct Go install (requires Go 1.26.3 or newer):
 
 ```bash
-go install github.com/mvanhorn/printing-press-library/library/commerce/shopper/cmd/shopper-pp-cli@latest
+go install github.com/educrvz/shopper-pp-cli/cmd/shopper-pp-cli@latest
 ```
 
 If `--version` reports "command not found" after install, the install step did not put the binary on `$PATH`. Do not proceed with skill commands until verification succeeds.
@@ -280,7 +280,7 @@ Parse `$ARGUMENTS`:
 
 1. Install the MCP server:
    ```bash
-   go install github.com/mvanhorn/printing-press-library/library/commerce/shopper/cmd/shopper-pp-mcp@latest
+   go install github.com/educrvz/shopper-pp-cli/cmd/shopper-pp-mcp@latest
    ```
 2. Register with Claude Code:
    ```bash

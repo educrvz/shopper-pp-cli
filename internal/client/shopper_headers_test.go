@@ -1,14 +1,14 @@
 package client
 
 import (
+	"github.com/educrvz/shopper-pp-cli/internal/config"
 	"testing"
-	"shopper-pp-cli/internal/config"
 )
 
 func TestShopperHeadersInjected(t *testing.T) {
 	cfg := &config.Config{BaseURL: "https://siteapi.shopper.com.br"}
 	c := New(cfg, 0, 0)
-	
+
 	required := map[string]string{
 		"app-os-x-version": "web:1002",
 		"x-store-id":       "1",

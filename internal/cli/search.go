@@ -9,7 +9,7 @@ import (
 	"strings"
 
 	"github.com/spf13/cobra"
-	"shopper-pp-cli/internal/store"
+	"github.com/educrvz/shopper-pp-cli/internal/store"
 )
 
 // isNilOrEmpty checks whether a JSON object has nil or empty values for

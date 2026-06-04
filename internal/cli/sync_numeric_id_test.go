@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"shopper-pp-cli/internal/store"
+	"github.com/educrvz/shopper-pp-cli/internal/store"
 )
 
 func TestSyncSingleObject_PreservesLargeIntegerResourceIDs(t *testing.T) {

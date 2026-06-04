@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	"shopper-pp-cli/internal/config"
+	"github.com/educrvz/shopper-pp-cli/internal/config"
 )
 
 // recordingRoundTripper counts how many times its RoundTrip method is

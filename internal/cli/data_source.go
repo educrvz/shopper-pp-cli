@@ -17,8 +17,8 @@ import (
 	"strings"
 	"time"
 
-	"shopper-pp-cli/internal/client"
-	"shopper-pp-cli/internal/store"
+	"github.com/educrvz/shopper-pp-cli/internal/client"
+	"github.com/educrvz/shopper-pp-cli/internal/store"
 )
 
 const networkFallbackReason = "api_unreachable"

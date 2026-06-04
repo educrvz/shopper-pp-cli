@@ -10,7 +10,7 @@ import (
 	"sort"
 
 	"github.com/spf13/cobra"
-	"shopper-pp-cli/internal/store"
+	"github.com/educrvz/shopper-pp-cli/internal/store"
 )
 
 func newAnalyticsCmd(flags *rootFlags) *cobra.Command {

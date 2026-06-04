@@ -218,6 +218,9 @@ func PriceSnapshotWindow(db *sql.DB, since time.Time, productIDs []string) ([]Pr
 			placeholders = append(placeholders, '?')
 			args = append(args, pid)
 		}
+		// #nosec G201 -- placeholders is built solely from literal '?' and ',' bytes;
+		// no user data is interpolated. All values (sinceStr and each productID) are
+		// bound via db.Query parameters below, so there is no SQL injection surface.
 		q := fmt.Sprintf(
 			`SELECT id, product_id, name, price_cents, unit_price, unit_label, pack_grams, taken_at
 			 FROM price_snapshots WHERE taken_at >= ? AND product_id IN (%s) ORDER BY product_id, taken_at`,

@@ -9,8 +9,8 @@ import (
 	"os"
 	"os/exec"
 	"runtime"
-	"shopper-pp-cli/internal/cliutil"
-	"shopper-pp-cli/internal/config"
+	"github.com/educrvz/shopper-pp-cli/internal/cliutil"
+	"github.com/educrvz/shopper-pp-cli/internal/config"
 )
 
 func newAuthCmd(flags *rootFlags) *cobra.Command {

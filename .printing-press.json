@@ -27,7 +27,7 @@
   ],
   "novel_features": [
     {
-      "name": "Charge & Edit Calendar",
+      "name": "Charge \u0026 Edit Calendar",
       "command": "charge-calendar",
       "description": "Every upcoming cycle's charge date, edit-lock deadline, and delivery date in one timeline so you never miss an edit window or get surprised by a charge."
     },

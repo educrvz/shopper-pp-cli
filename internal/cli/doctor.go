@@ -14,10 +14,10 @@ import (
 	"time"
 
 	"github.com/spf13/cobra"
-	"shopper-pp-cli/internal/client"
-	"shopper-pp-cli/internal/cliutil"
-	"shopper-pp-cli/internal/config"
-	"shopper-pp-cli/internal/store"
+	"github.com/educrvz/shopper-pp-cli/internal/client"
+	"github.com/educrvz/shopper-pp-cli/internal/cliutil"
+	"github.com/educrvz/shopper-pp-cli/internal/config"
+	"github.com/educrvz/shopper-pp-cli/internal/store"
 )
 
 // looksLikeDoctorInterstitial reports whether the response body matches a known

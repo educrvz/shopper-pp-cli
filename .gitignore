@@ -19,3 +19,4 @@ config.toml
 
 # OS
 .DS_Store
+/dist/

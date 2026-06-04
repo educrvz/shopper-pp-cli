@@ -10,7 +10,9 @@ Created by [@educrvz](https://github.com/educrvz) (educrvz).
 
 ## Install
 
-The recommended path installs both the `shopper-pp-cli` binary and the `pp-shopper` agent skill (Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, and other agents supported by the upstream [`skills`](https://github.com/vercel-labs/skills) CLI) in one shot:
+> **Installing from this repo (`educrvz/shopper-pp-cli`):** the **Go install**, **GitHub-release download**, and **Claude Desktop `.mcpb`** methods below work directly from this repository today. The `npx @mvanhorn/printing-press-library install` and `skills`/`hermes` commands install via the **printing-press library** and only resolve once this CLI is merged there ([PR #1041](https://github.com/mvanhorn/printing-press-library/pull/1041)). Until then, prefer the Go / release / Claude Desktop options.
+
+The recommended path (once merged into the printing-press library) installs both the `shopper-pp-cli` binary and the `pp-shopper` agent skill (Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, and other agents supported by the upstream [`skills`](https://github.com/vercel-labs/skills) CLI) in one shot:
 
 ```bash
 npx -y @mvanhorn/printing-press-library install shopper
@@ -40,14 +42,14 @@ npx -y @mvanhorn/printing-press-library install shopper --agent claude-code --ag
 If `npx` isn't available (no Node, offline), install the CLI directly via Go (requires Go 1.26.3 or newer):
 
 ```bash
-go install github.com/mvanhorn/printing-press-library/library/commerce/shopper/cmd/shopper-pp-cli@latest
+go install github.com/educrvz/shopper-pp-cli/cmd/shopper-pp-cli@latest
 ```
 
 This installs the CLI only â€” no skill.
 
 ### Pre-built binary
 
-Download a pre-built binary for your platform from the [latest release](https://github.com/mvanhorn/printing-press-library/releases/tag/shopper-current). On macOS, clear the Gatekeeper quarantine: `xattr -d com.apple.quarantine <binary>`. On Unix, mark it executable: `chmod +x <binary>`.
+Download a pre-built binary for your platform from the [latest release](https://github.com/educrvz/shopper-pp-cli/releases/latest). On macOS, clear the Gatekeeper quarantine: `xattr -d com.apple.quarantine <binary>`. On Unix, mark it executable: `chmod +x <binary>`.
 
 <!-- pp-hermes-install-anchor -->
 ## Install for Hermes
@@ -78,7 +80,7 @@ This CLI ships an [MCPB](https://github.com/modelcontextprotocol/mcpb) bundle â€
 
 To install:
 
-1. Download the `.mcpb` for your platform from the [latest release](https://github.com/mvanhorn/printing-press-library/releases/tag/shopper-current).
+1. Download the `.mcpb` for your platform from the [latest release](https://github.com/educrvz/shopper-pp-cli/releases/latest).
 2. Double-click the `.mcpb` file. Claude Desktop opens and walks you through the install.
 3. Fill in `SHOPPER_TOKEN` when Claude Desktop prompts you.
 
@@ -91,7 +93,7 @@ If you can't use the MCPB bundle (older Claude Desktop, unsupported platform), i
 
 
 ```bash
-go install github.com/mvanhorn/printing-press-library/library/commerce/shopper/cmd/shopper-pp-mcp@latest
+go install github.com/educrvz/shopper-pp-cli/cmd/shopper-pp-mcp@latest
 ```
 
 Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_desktop_config.json`):

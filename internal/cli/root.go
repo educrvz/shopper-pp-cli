@@ -13,8 +13,8 @@ import (
 	"time"
 
 	"github.com/spf13/cobra"
-	"shopper-pp-cli/internal/client"
-	"shopper-pp-cli/internal/config"
+	"github.com/educrvz/shopper-pp-cli/internal/client"
+	"github.com/educrvz/shopper-pp-cli/internal/config"
 )
 
 var version = "1.0.0"

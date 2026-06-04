@@ -7,7 +7,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"shopper-pp-cli/internal/store"
+	"github.com/educrvz/shopper-pp-cli/internal/store"
 )
 
 func TestDiffCartSnapshots(t *testing.T) {

@@ -1,4 +1,4 @@
-module shopper-pp-cli
+module github.com/educrvz/shopper-pp-cli
 
 go 1.26.4
 

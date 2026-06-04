@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"shopper-pp-cli/internal/store"
+	"github.com/educrvz/shopper-pp-cli/internal/store"
 )
 
 func TestRestockPredictInsufficientHistory(t *testing.T) {

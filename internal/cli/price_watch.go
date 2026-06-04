@@ -13,8 +13,8 @@ import (
 	"time"
 
 	"github.com/spf13/cobra"
-	"shopper-pp-cli/internal/cliutil"
-	"shopper-pp-cli/internal/store"
+	"github.com/educrvz/shopper-pp-cli/internal/cliutil"
+	"github.com/educrvz/shopper-pp-cli/internal/store"
 )
 
 type priceAlert struct {
