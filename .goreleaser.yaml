@@ -39,13 +39,20 @@ archives:
         formats: [zip]
 checksum:
   name_template: checksums.txt
-brews:
+homebrew_casks:
   - name: shopper-pp-cli
     repository:
       owner: educrvz
       name: homebrew-tap
     homepage: "https://github.com/educrvz/shopper-pp-cli"
     description: "The first CLI for Shopper — every catalog, cart"
-    install: |
-      bin.install "shopper-pp-cli"
-      bin.install "shopper-pp-mcp"
+    binaries:
+      - shopper-pp-cli
+      - shopper-pp-mcp
+    hooks:
+      post:
+        install: |
+          if OS.mac?
+            system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/shopper-pp-cli"]
+            system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/shopper-pp-mcp"]
+          end
