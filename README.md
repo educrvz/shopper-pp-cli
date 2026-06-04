@@ -4,7 +4,7 @@
 
 Shopper's recurring basket, fixed charge-7-days-before clock, and drifting prices produce a time series the official app discards every cycle. This CLI keeps it in a local SQLite store, unlocking charge-calendar, basket diff, price-watch, restock prediction, catalog-drift detection, and cashback optimization — none of which any Shopper interface offers.
 
-Learn more at [Shopper](https://siteapi.shopper.com.br).
+Learn more at [Shopper](https://shopper.com.br).
 
 Created by [@educrvz](https://github.com/educrvz) (educrvz).
 
@@ -71,7 +71,7 @@ Inside a Hermes chat session:
 Tell your OpenClaw agent (copy this):
 
 ```
-Install the pp-shopper skill from https://github.com/mvanhorn/printing-press-library/tree/main/cli-skills/pp-shopper. The skill defines how its required CLI can be installed.
+Install the pp-shopper skill from this repo's SKILL.md at https://github.com/educrvz/shopper-pp-cli/blob/main/SKILL.md. The skill defines how its required CLI can be installed. (Once merged into the printing-press library, it will also be available at https://github.com/mvanhorn/printing-press-library/tree/main/cli-skills/pp-shopper.)
 ```
 
 ## Use with Claude Desktop
