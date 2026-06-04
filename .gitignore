@@ -1,0 +1,21 @@
+# Build artifacts
+/build/
+/shopper
+/shopper-pp-cli
+*.mcpb
+
+# Local data / runtime
+*.db
+data.db
+agentcookie.toml
+config.toml
+
+# Printing Press internal run artifacts (not part of the source CLI)
+/.manuscripts/
+/.printing-press-pii-polish.json
+/.printing-press-patches/
+/dogfood-results.json
+/workflow-verify-report.json
+
+# OS
+.DS_Store
