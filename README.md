@@ -71,8 +71,10 @@ Inside a Hermes chat session:
 Tell your OpenClaw agent (copy this):
 
 ```
-Install the pp-shopper skill from this repo's SKILL.md at https://github.com/educrvz/shopper-pp-cli/blob/main/SKILL.md. The skill defines how its required CLI can be installed. (Once merged into the printing-press library, it will also be available at https://github.com/mvanhorn/printing-press-library/tree/main/cli-skills/pp-shopper.)
+Install the pp-shopper skill from this repo's SKILL.md at https://github.com/educrvz/shopper-pp-cli/blob/main/SKILL.md. The skill defines how its required CLI can be installed.
 ```
+
+Once this CLI is merged into the [printing-press library](https://github.com/mvanhorn/printing-press-library/pull/1041), the skill will also be installable from the library's `cli-skills/pp-shopper` registry.
 
 ## Use with Claude Desktop
 
