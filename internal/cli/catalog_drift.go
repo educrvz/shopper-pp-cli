@@ -4,7 +4,6 @@
 package cli
 
 import (
-	"encoding/json"
 	"fmt"
 	"math"
 	"strings"
@@ -240,7 +239,6 @@ pack sizes in their names (e.g. "Arroz 5KG", "Leite 1L").`,
 			}
 
 			// Emit JSON regardless of terminal status (this is an analytics command)
-			_ = json.NewEncoder(cmd.OutOrStdout()) // suppress unused import warning if needed
 			return printJSONFiltered(cmd.OutOrStdout(), result, flags)
 		},
 	}

@@ -142,9 +142,26 @@ func buildChargeCalendar(summary, calendar json.RawMessage, horizon time.Duratio
 		}
 	}
 
-	// Detect Fresh/perishable plan from any string field in the summary.
-	isFresh := strings.Contains(strings.ToLower(string(summary)), "fresh") ||
-		strings.Contains(strings.ToLower(string(summary)), "pereci")
+	// Detect Fresh/perishable plan from specific plan-type fields only — never
+	// the whole JSON blob, since a product named "Leite Fresco" or "Suco Fresh"
+	// in the basket would otherwise misclassify the plan and surface the wrong
+	// 3-day edit-lock offset.
+	isFresh := false
+	for _, k := range []string{"planType", "plan_type", "deliveryType", "delivery_type", "plan", "modality", "type"} {
+		raw, ok := res[k]
+		if !ok {
+			continue
+		}
+		var v string
+		if json.Unmarshal(raw, &v) != nil {
+			continue
+		}
+		lv := strings.ToLower(v)
+		if strings.Contains(lv, "fresh") || strings.Contains(lv, "pereci") {
+			isFresh = true
+			break
+		}
+	}
 
 	if deliveryDateStr != "" {
 		if delivDate, err := parseShopperDate(deliveryDateStr); err == nil {

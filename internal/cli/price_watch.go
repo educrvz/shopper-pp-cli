@@ -111,7 +111,7 @@ First run: captures price baseline; no alerts yet (no history to compare).`,
 			} else {
 				// Sample from departments or news — get a page of catalog products
 				var searchData json.RawMessage
-				searchData, _, _ = c.Post(cmd.Context(), "/catalog/search",
+				searchData, _, _ = c.PostQueryWithParams(cmd.Context(), "/catalog/search", nil,
 					map[string]any{"query": "", "page": 0, "size": 50})
 				if searchData != nil {
 					toSnapshot = append(toSnapshot, parseCatalogProducts(searchData)...)
