@@ -10,9 +10,7 @@ Created by [@educrvz](https://github.com/educrvz) (educrvz).
 
 ## Install
 
-> **Installing from this repo (`educrvz/shopper-pp-cli`):** the **Go install**, **GitHub-release download**, and **Claude Desktop `.mcpb`** methods below work directly from this repository today. The `npx @mvanhorn/printing-press-library install` and `skills`/`hermes` commands install via the **printing-press library** and only resolve once this CLI is merged there ([PR #1041](https://github.com/mvanhorn/printing-press-library/pull/1041)). Until then, prefer the Go / release / Claude Desktop options.
-
-The recommended path (once merged into the printing-press library) installs both the `shopper-pp-cli` binary and the `pp-shopper` agent skill (Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, and other agents supported by the upstream [`skills`](https://github.com/vercel-labs/skills) CLI) in one shot:
+The recommended path installs the published Printing Press build plus the `pp-shopper` agent skill (Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, and other agents supported by the upstream [`skills`](https://github.com/vercel-labs/skills) CLI) in one shot:
 
 ```bash
 npx -y @mvanhorn/printing-press-library install shopper
@@ -39,7 +37,7 @@ npx -y @mvanhorn/printing-press-library install shopper --agent claude-code --ag
 
 ### Without Node (Go fallback)
 
-If `npx` isn't available (no Node, offline), install the CLI directly via Go (requires Go 1.26.3 or newer):
+If `npx` isn't available (no Node, offline), install the standalone CLI directly via Go (requires Go 1.26.5 or newer):
 
 ```bash
 go install github.com/educrvz/shopper-pp-cli/cmd/shopper-pp-cli@latest
@@ -71,10 +69,8 @@ Inside a Hermes chat session:
 Tell your OpenClaw agent (copy this):
 
 ```
-Install the pp-shopper skill from this repo's SKILL.md at https://github.com/educrvz/shopper-pp-cli/blob/main/SKILL.md. The skill defines how its required CLI can be installed.
+Install the pp-shopper skill from this repo's SKILL.md at https://github.com/educrvz/shopper-pp-cli/blob/main/SKILL.md. The skill defines how its required CLI can be installed. The published skill is also available at https://github.com/mvanhorn/printing-press-library/tree/main/cli-skills/pp-shopper.
 ```
-
-Once this CLI is merged into the [printing-press library](https://github.com/mvanhorn/printing-press-library/pull/1041), the skill will also be installable from the library's `cli-skills/pp-shopper` registry.
 
 ## Use with Claude Desktop
 
