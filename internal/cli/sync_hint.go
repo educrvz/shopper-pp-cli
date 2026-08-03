@@ -12,7 +12,7 @@ import (
 	"time"
 
 	"github.com/spf13/cobra"
-	"github.com/educrvz/shopper-pp-cli/internal/store"
+	"shopper-pp-cli/internal/store"
 )
 
 type syncHintState struct {

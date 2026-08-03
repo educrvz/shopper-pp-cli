@@ -1,0 +1,15 @@
+{
+  "schema_version": 2,
+  "id": "tail-exposes-readable-resources",
+  "applied_at": "2026-08-03",
+  "base_run_id": "20260803-082038-a3b929d1",
+  "base_printing_press_version": "4.30.1",
+  "summary": "The generic tail command must expose only Shopper resources with concrete authenticated GET paths.",
+  "reason": "An empty emitted read-path map left tail discoverable but unusable and caused the verifier's critical resource-path probe to fail.",
+  "files": [
+    "internal/cli/resource_paths.go",
+    "internal/cli/tail.go",
+    "internal/cli/shopper_resource_paths_test.go"
+  ],
+  "validated_outcome": "Static resource-path verification and tail discovery both pass for address, cart, catalog, delivery, features, orders, and session."
+}
