@@ -19,5 +19,5 @@
     "internal/mcp/tools.go",
     "spec.yaml"
   ],
-  "validated_outcome": "The CLI lists live method availability, rejects disabled PIX, validates cart readiness, and prepares card or boleto browser checkout without handling credentials or submitting an order."
+  "validated_outcome": "The CLI lists live method availability, rejects disabled PIX, validates cart readiness, and prepares card or boleto checkout in the default browser or an explicitly selected authenticated Brave session without handling credentials or submitting an order."
 }

@@ -247,7 +247,7 @@ These commands are declared by the spec author and require separate hand-written
 
 - `shopper-pp-cli stores` — List all available Shopper storefronts with IDs, cluster IDs, payment parameters, and capability flags
 - `shopper-pp-cli checkout preview` — Pre-checkout summary: basket totals, delivery date, charge date, min-order status, and accepted payment types (read-only
-- `shopper-pp-cli checkout prepare --payment <card|boleto|pix> [--open]` — Validate one-time or recurring payment readiness before browser confirmation
+- `shopper-pp-cli checkout prepare --payment <card|boleto|pix> [--open] [--browser default|brave]` — Validate one-time or recurring payment readiness before browser confirmation
 - `shopper-pp-cli checkout open` — Open the selected storefront's checkout page in the system browser
 - `shopper-pp-cli delivery reschedule [--store <store>]` — Open the delivery reschedule calendar in the browser (POST /shop/minha-conta/alterar-data requires session cookie)
 - `shopper-pp-cli delivery skip` — Open the skip-delivery page in the browser — subscription stores only (POST /shop/minha-conta/pular-entrega/ requires

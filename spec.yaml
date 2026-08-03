@@ -498,9 +498,10 @@ extra_commands:
       description: "Pre-checkout summary: basket totals, delivery date, charge date, min-order status, and accepted payment types (read-only; opens browser for payment)"
     - name: checkout open
       description: "Open the selected Shopper storefront checkout page in the system browser"
+      args: "[--browser default|brave]"
     - name: checkout prepare
       description: "Validate card, boleto, or PIX against live store capabilities and cart readiness before browser confirmation"
-      args: "--payment <card|boleto|pix> [--open]"
+      args: "--payment <card|boleto|pix> [--open] [--browser default|brave]"
     - name: delivery reschedule
       description: "Open the delivery reschedule calendar in the browser (POST /shop/minha-conta/alterar-data requires session cookie)"
       args: "[--store <store>]"

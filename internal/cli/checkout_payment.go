@@ -128,6 +128,7 @@ in Shopper's authenticated browser checkout; this command is read-only.`,
 func newCheckoutPrepareCmd(flags *rootFlags) *cobra.Command {
 	var requestedPayment string
 	var openBrowserFlag bool
+	var browserName string
 
 	cmd := &cobra.Command{
 		Use:   "prepare",
@@ -141,7 +142,7 @@ and next steps. Use --open to launch that page after validation.
 The CLI does not submit the order, charge a saved card, handle raw card data,
 generate a PIX code, or generate a boleto. Those consequential actions remain in
 Shopper's authenticated browser session behind its CSRF protection.`,
-		Example: "  shopper-pp-cli checkout prepare --store unica --payment card --agent\n  shopper-pp-cli checkout prepare --store unica --payment boleto --open\n  shopper-pp-cli checkout prepare --store now --payment pix --agent",
+		Example: "  shopper-pp-cli checkout prepare --store unica --payment card --agent\n  shopper-pp-cli checkout prepare --store unica --payment boleto --open --browser brave\n  shopper-pp-cli checkout prepare --store now --payment pix --agent",
 		Annotations: map[string]string{
 			"pp:no-error-path-probe": "true",
 		},
@@ -226,7 +227,7 @@ Shopper's authenticated browser session behind its CSRF protection.`,
 				if !ready {
 					return usageErr(fmt.Errorf("checkout has blockers; resolve them before using --open"))
 				}
-				return openBrowser(checkoutURL)
+				return openBrowserIn(checkoutURL, browserName)
 			}
 			return nil
 		},
@@ -234,5 +235,6 @@ Shopper's authenticated browser session behind its CSRF protection.`,
 	cmd.Flags().StringVar(&requestedPayment, "payment", "", "Payment method: card, boleto, or pix")
 	_ = cmd.MarkFlagRequired("payment")
 	cmd.Flags().BoolVar(&openBrowserFlag, "open", false, "Open Shopper checkout after validation")
+	cmd.Flags().StringVar(&browserName, "browser", "default", "Browser for checkout: default or brave")
 	return cmd
 }

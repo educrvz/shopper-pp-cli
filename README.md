@@ -222,6 +222,12 @@ These capabilities aren't available in any other tool for this API.
   shopper-pp-cli checkout prepare --store unica --payment card --agent
   ```
 
+  If your authenticated Shopper session is in Brave on macOS, continue with:
+
+  ```bash
+  shopper-pp-cli checkout prepare --store unica --payment card --open --browser brave
+  ```
+
 ## Recipes
 
 ### Check if the edit window is still open
