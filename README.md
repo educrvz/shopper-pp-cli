@@ -550,3 +550,7 @@ If you use agentcookie to sync secrets across machines, this CLI auto-adopts age
 - **unica/pet orders missing from 'orders spend'** — orders spend queries all stores by default; if a store shows no data, your account has no orders there
 - **delivery calendar shows no available dates** — Run --store with a subscription store (programada/fresh/pet). now/now-bebidas use a different ultra-fast delivery flow.
 - **checkout open or delivery reschedule shows wrong store URL** — Pass --store explicitly to get the correct storefront URL (e.g. --store fresh opens fresh.shopper.com.br)
+
+## Acknowledgements
+
+Developed by Edu Cruz with AI-assisted engineering from Claude and OpenAI Codex. All changes are reviewed and published under the maintainer's responsibility.
