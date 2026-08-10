@@ -553,4 +553,8 @@ If you use agentcookie to sync secrets across machines, this CLI auto-adopts age
 
 ## Acknowledgements
 
-Developed by Edu Cruz with AI-assisted engineering from Claude and OpenAI Codex. All changes are reviewed and published under the maintainer's responsibility.
+Developed by Edu Cruz with AI-assisted engineering from Claude and OpenAI Codex.
+
+## Disclaimer
+
+This unofficial community project is provided as-is, without warranties or guarantees. Use it at your own risk. You are responsible for reviewing commands and confirming any purchase, payment, account, or data changes before they occur.
