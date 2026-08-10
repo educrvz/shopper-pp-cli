@@ -1,0 +1,14 @@
+{
+  "schema_version": 2,
+  "id": "browser-handoffs-are-may-write",
+  "applied_at": "2026-08-03",
+  "base_run_id": "20260803-082038-a3b929d1",
+  "base_printing_press_version": "4.30.1",
+  "summary": "Commands that launch or may launch a browser must retain may-write MCP semantics even when the destination page initially renders read-only data.",
+  "reason": "Checkout, delivery, subscription, and card-management handoffs create a local browser side effect and can lead directly to consequential authenticated actions; advertising them as read-only would let agents invoke them under the wrong safety boundary.",
+  "files": [
+    "internal/cli/checkout.go",
+    "internal/cli/shopper_browser_handoff.go"
+  ],
+  "validated_outcome": "Tool metadata no longer marks browser-opening leaves or their custom parents as mcp:read-only; checkout preview and storefront listing remain read-only."
+}
