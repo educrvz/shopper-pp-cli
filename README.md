@@ -4,7 +4,22 @@
 
 shopper-pp-cli covers all six Shopper storefronts (Compra Programada, Fresh, Pet, Compra Única, Now, Now Bebidas) with correct store/cluster scoping, full siteapi REST surface, browser-deep-link helpers for subscription mutations, and a local SQLite layer for offline product search, basket diffs, price tracking, and cross-store spend rollup.
 
-Learn more at [Shopper](https://siteapi.shopper.com.br).
+It is designed for people and AI agents to manage recurring shopping, prepare one-time purchases, and inspect order history without manually navigating every screen. Payment selection and final order confirmation stay in the authenticated Shopper browser, so the CLI never asks for or stores raw card details.
+
+> [!NOTE]
+> This is an independent, community-built project and is not an official Shopper product. It uses the same account permissions as the authenticated user and does not bypass Shopper's checkout or payment controls.
+
+## What it unlocks
+
+| Workflow | What the CLI adds |
+| --- | --- |
+| Recurring shopping | Edit baskets, see charge and edit-lock dates, and compare cycles |
+| One-time purchases | Check cart and payment readiness, then continue securely in Shopper's checkout |
+| All storefronts | Work with Compra Programada, Fresh, Pet, Compra Única, Now, and Now Bebidas |
+| Personal analytics | Keep local price history, detect basket drift, and roll up spend across stores |
+| Agent workflows | Structured JSON, dry runs, MCP support, and explicit confirmation boundaries |
+
+Learn more about the service at [Shopper](https://shopper.com.br) or install this community CLI from [Printing Press](https://printingpress.dev/search?q=shopper).
 
 Created by [@educrvz](https://github.com/educrvz) (educrvz).
 
